@@ -1,13 +1,13 @@
 (set-env!
   :resource-paths #{"resources"}
   :dependencies '[[cljsjs/boot-cljsjs "0.10.0" :scope "test"]
-                  [cljsjs/react "16.4.0-0"]
-                  [cljsjs/react-dom "16.4.0-0"]])
+                  [cljsjs/react "16.4.1-0"]
+                  [cljsjs/react-dom "16.4.1-0"]])
 
 (require '[cljsjs.boot-cljsjs.packaging :refer :all])
 
-(def +lib-version+ "1.2.1")
-(def +version+ (str +lib-version+ "-1"))
+(def +lib-version+ "1.4.0")
+(def +version+ (str +lib-version+ "-0"))
 
 (task-options!
   pom {:project     'cljsjs/material-ui
@@ -23,8 +23,8 @@
                             ["npm" "run" "build:dev"]
                             ["npm" "run" "build:prod"]
                             ["rm" "-rf" "./node_modules"]])
-   (sift :move {#".*material-ui.inc.js"               "cljsjs/material-ui/development/material-ui.inc.js"
-                #".*material-ui.min.inc.js"           "cljsjs/material-ui/production/material-ui.min.inc.js"})
+   (sift :move {#".*material-ui.inc.js"     "cljsjs/material-ui/development/material-ui.inc.js"
+                #".*material-ui.min.inc.js" "cljsjs/material-ui/production/material-ui.min.inc.js"})
    (sift :include #{#"^cljsjs"})
    (deps-cljs :foreign-libs [{:file #"material-ui.inc.js"
                               :file-min #"material-ui.min.inc.js"
